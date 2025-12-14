@@ -1,0 +1,24 @@
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node / frontend build artifacts
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+frontend/.cache/
+
+# Environment / secrets
+.env
+.env.*
+backend/.env
+backend/.env.*
+frontend/.env
+frontend/.env.*
+
+# Misc
+*.log
+.DS_Store

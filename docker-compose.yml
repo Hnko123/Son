@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: etsy
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: etsydb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U etsy -d etsydb"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://etsy:password@db/etsydb
+      STARTUP_MODE: "startup"
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8080:8080"
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "127.0.0.1:3000:3000"
+volumes:
+  pgdata:

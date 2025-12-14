@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+/* Modern dark theme base styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Noto Sans Mono", "Liberation Sans", "DejaVu Sans", "Fira Sans", "Source Sans Pro", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", "Noto Sans Symbols", "Noto Sans Symbols 2";
+    @apply antialiased bg-background text-text font-body;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply transition-colors rounded-full bg-text-secondary duration-fast;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text;
+  }
+}
+
+/* Glassmorphism utility classes */
+@layer utilities {
+  .glass-card {
+    @apply border bg-surface/60 backdrop-blur-lg border-border/20 shadow-glass;
+  }
+
+  .glass-container {
+    @apply border bg-surface border-border backdrop-blur-md;
+  }
+}
+
+/* Meteor animation keyframes */
+@keyframes meteor {
+  0% {
+    transform: rotate(315deg) translateX(0) translateY(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(315deg) translateX(-1000px) translateY(1000px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor linear infinite;
+}
+
+/* Table Moving Border Animations */
+@keyframes shimmer {
+  0%, 100% { background-position: -200% 0; }
+  50% { background-position: 200% 0; }
+}
+
+@keyframes slideShimmer {
+  0%, 100% { background-position: 0% 0; }
+  50% { background-position: 100% 0; }
+}
+
+/* Simple 50% transparent white borders for table */
+.table-header-border {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.table-row-border {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.table-column-border {
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Dynamic text that fills cell width */
+.table-cell-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.festive-light-bulb,
+.festive-bulb {
+  width: 8px;
+  height: 14px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  animation: festiveBulbPulse 2.4s ease-in-out infinite;
+}
+
+.festive-bulb {
+  width: 7px;
+  height: 12px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.45);
+}
+
+@keyframes festiveBulbPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+}
+
+.christmas-snowflake {
+  position: absolute;
+  top: -10%;
+  animation-name: christmasSnowfall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0.65;
+  filter: drop-shadow(0 6px 8px rgba(15, 23, 42, 0.35));
+}
+
+@keyframes christmasSnowfall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(120vh) translateX(15px) rotate(360deg);
+    opacity: 0;
+  }
+}
